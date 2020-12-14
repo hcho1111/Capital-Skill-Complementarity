@@ -1,0 +1,728 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}/Users/Cho/Desktop/Data/PowerPoint Log.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}19 Mar 2019, 10:20:03
+
+{com}. gen AU = puma == 5302
+
+. gen A1U1 = puma == 5303 
+
+. gen A2U2 = puma == 5404 
+
+. gen A3U3 = puma == 5305 
+
+. gen A4U4 = puma == 5306 
+
+. gen A5U5 = puma == 5307 
+
+. gen A6U6 = puma == 5308 
+
+. gen A7U7 = puma == 5309
+
+. gen A8U8 = puma == 5203
+
+. gen austin = AU + A1U1 + A2U2 + A3U3 + A4U4 + A5U5 + A6U6 + A7U7 + A8U8
+
+. 
+. gen FW = puma == 2506
+
+. gen F1W1 = puma == 2508 
+
+. gen F2W2 = puma == 2509 
+
+. gen F3W3 = puma == 2511 
+
+. gen F4W4 = puma == 2512 
+
+. gen F5W5 = puma == 2513 
+
+. gen F6W6 = puma == 2514 
+
+. gen F7W7 = puma == 2515
+
+. gen F8W8 = puma == 2516
+
+. gen ftworth = FW + F1W1 + F2W2 + F3W3 + F4W4 + F5W5 + F6W6 + F7W7 + F8W8
+
+. 
+. gen combined = ftworth + austin
+
+. drop if combined ==0 
+{txt}(9,730,669 observations deleted)
+
+{com}. 
+. drop if missing(esr)
+{txt}(15,894 observations deleted)
+
+{com}. drop if missing(fiberop)
+{txt}(11,094 observations deleted)
+
+{com}. 
+. gen civ1 = esr == 1
+
+. gen civ2 = esr == 2
+
+. gen armed1 = esr == 4
+
+. gen armed2 = esr == 5
+
+. gen employment = civ1 + civ2 + armed1 + armed2 
+
+. 
+. gen lnincome = ln(rinch_all_adj)
+{txt}(305 missing values generated)
+
+{com}. 
+. gen pov = povpip/100
+
+. 
+. by year, sort: sum  fiberop female citizen pov lnincome  if austin
+
+{txt}{hline}
+-> year = 2014
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}fiberop {c |}{res}      8,486    .0880273    .2833514          0          1
+{txt}{space 6}female {c |}{res}      8,486    .5097808    .4999338          0          1
+{txt}{space 5}citizen {c |}{res}      8,486    .9019562    .2973914          0          1
+{txt}{space 9}pov {c |}{res}      8,486    3.611989    1.589958          0       5.01
+{txt}{space 4}lnincome {c |}{res}      8,424     11.3297    .9138709   1.400001   14.37176
+
+{txt}{hline}
+-> year = 2015
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}fiberop {c |}{res}      9,049    .1024423    .3032458          0          1
+{txt}{space 6}female {c |}{res}      9,049    .5108852    .4999091          0          1
+{txt}{space 5}citizen {c |}{res}      9,049    .8985523    .3019373          0          1
+{txt}{space 9}pov {c |}{res}      9,049     3.66295    1.564368          0       5.01
+{txt}{space 4}lnincome {c |}{res}      8,978    11.37546     .927421   .0125572   13.92555
+
+{txt}{hline}
+-> year = 2016
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}fiberop {c |}{res}      9,474    .8694321    .3369449          0          1
+{txt}{space 6}female {c |}{res}      9,474    .5082331    .4999586          0          1
+{txt}{space 5}citizen {c |}{res}      9,474    .8948702    .3067368          0          1
+{txt}{space 9}pov {c |}{res}      9,474    3.692359    1.561925          0       5.01
+{txt}{space 4}lnincome {c |}{res}      9,426     11.3717    .9506397          0   14.24046
+
+
+{com}. by year, sort: sum  fiberop female citizen pov lnincome  if ftworth
+
+{txt}{hline}
+-> year = 2014
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}fiberop {c |}{res}      5,900    .1976271     .398243          0          1
+{txt}{space 6}female {c |}{res}      5,900    .5350847    .4988098          0          1
+{txt}{space 5}citizen {c |}{res}      5,900    .9135593    .2810375          0          1
+{txt}{space 9}pov {c |}{res}      5,900    3.388417     1.55437          0       5.01
+{txt}{space 4}lnincome {c |}{res}      5,872    11.15669    .8340595   4.524566   13.93926
+
+{txt}{hline}
+-> year = 2015
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}fiberop {c |}{res}      5,955    .1684299     .374279          0          1
+{txt}{space 6}female {c |}{res}      5,955    .5313182    .4990601          0          1
+{txt}{space 5}citizen {c |}{res}      5,955    .9215785    .2688563          0          1
+{txt}{space 9}pov {c |}{res}      5,955     3.45112     1.55135          0       5.01
+{txt}{space 4}lnincome {c |}{res}      5,922    11.19228    .8648005   .0125572   14.07931
+
+{txt}{hline}
+-> year = 2016
+
+    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 5}fiberop {c |}{res}      6,989    .8131349    .3898311          0          1
+{txt}{space 6}female {c |}{res}      6,989    .5243955    .4994402          0          1
+{txt}{space 5}citizen {c |}{res}      6,989    .9019888     .297351          0          1
+{txt}{space 9}pov {c |}{res}      6,989    3.280063    1.629431          0       5.01
+{txt}{space 4}lnincome {c |}{res}      6,926    11.11172    .9020965   3.912023   13.64394
+
+
+{com}. 
+. by year, sort: pwcorr employment fiberop female citizen pov lnincome
+
+{txt}{hline}
+-> year = 2014
+
+             {c |} employ~t  fiberop   female  citizen      pov lnincome
+{hline 13}{c +}{hline 54}
+  employment {c |} {res}  1.0000 
+     {txt}fiberop {c |} {res}  0.0082   1.0000 
+      {txt}female {c |} {res} -0.1285  -0.0049   1.0000 
+     {txt}citizen {c |} {res}  0.0086   0.0510   0.0172   1.0000 
+         {txt}pov {c |} {res}  0.1841   0.0931  -0.0466   0.1989   1.0000 
+    {txt}lnincome {c |} {res}  0.1683   0.0630  -0.0541   0.1050   0.7740   1.0000 
+
+{txt}{hline}
+-> year = 2015
+
+             {c |} employ~t  fiberop   female  citizen      pov lnincome
+{hline 13}{c +}{hline 54}
+  employment {c |} {res}  1.0000 
+     {txt}fiberop {c |} {res}  0.0312   1.0000 
+      {txt}female {c |} {res} -0.1418   0.0013   1.0000 
+     {txt}citizen {c |} {res} -0.0016   0.0551   0.0110   1.0000 
+         {txt}pov {c |} {res}  0.2025   0.0997  -0.0582   0.1767   1.0000 
+    {txt}lnincome {c |} {res}  0.1903   0.0887  -0.0712   0.0849   0.7718   1.0000 
+
+{txt}{hline}
+-> year = 2016
+
+             {c |} employ~t  fiberop   female  citizen      pov lnincome
+{hline 13}{c +}{hline 54}
+  employment {c |} {res}  1.0000 
+     {txt}fiberop {c |} {res}  0.0624   1.0000 
+      {txt}female {c |} {res} -0.1449  -0.0185   1.0000 
+     {txt}citizen {c |} {res}  0.0130   0.1290   0.0052   1.0000 
+         {txt}pov {c |} {res}  0.2135   0.2125  -0.0448   0.2180   1.0000 
+    {txt}lnincome {c |} {res}  0.2135   0.1901  -0.0429   0.1228   0.7796   1.0000 
+
+{com}. 
+. by year, sort: ttest employment, by(ftworth) unequal 
+
+{txt}{hline}
+-> year = 2014
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  8,486{col 22} .6721659{col 34} .0050961{col 46} .4694517{col 58} .6621763{col 70} .6821556
+       {txt}1 {c |}{res}{col 12}  5,900{col 22}  .639322{col 34} .0062522{col 46} .4802379{col 58} .6270655{col 70} .6515786
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,386{col 22}  .658696{col 34} .0039533{col 46} .4741637{col 58}  .650947{col 70} .6664449
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .0328439{col 34}  .008066{col 58} .0170333{col 70} .0486544
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}  4.0719
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}   12504
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{txt}{hline}
+-> year = 2015
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,049{col 22} .6760968{col 34} .0049197{col 46} .4679894{col 58} .6664531{col 70} .6857405
+       {txt}1 {c |}{res}{col 12}  5,955{col 22}  .647691{col 34} .0061907{col 46} .4777297{col 58}  .635555{col 70} .6598271
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 15,004{col 22} .6648227{col 34} .0038539{col 46} .4720681{col 58} .6572686{col 70} .6723768
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .0284058{col 34} .0079075{col 58} .0129059{col 70} .0439057
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}  3.5923
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}   12554
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.9998         {txt}Pr(|T| > |t|) = {res}0.0003          {txt}Pr(T > t) = {res}0.0002
+
+{txt}{hline}
+-> year = 2016
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,474{col 22} .6930547{col 34} .0047388{col 46} .4612509{col 58} .6837656{col 70} .7023438
+       {txt}1 {c |}{res}{col 12}  6,989{col 22} .6377164{col 34} .0057499{col 46} .4806946{col 58} .6264448{col 70}  .648988
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 16,463{col 22}  .669562{col 34} .0036661{col 46} .4703851{col 58} .6623762{col 70} .6767479
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .0553383{col 34}  .007451{col 58} .0407333{col 70} .0699432
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}  7.4269
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 14701.5
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{com}. by year, sort: ttest fiberop, by(ftworth) unequal 
+
+{txt}{hline}
+-> year = 2014
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  8,486{col 22} .0880273{col 34} .0030759{col 46} .2833514{col 58} .0819978{col 70} .0940569
+       {txt}1 {c |}{res}{col 12}  5,900{col 22} .1976271{col 34} .0051847{col 46}  .398243{col 58} .1874632{col 70}  .207791
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,386{col 22} .1329765{col 34} .0028311{col 46} .3395611{col 58} .1274273{col 70} .1385257
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.1095998{col 34} .0060284{col 58}-.1214168{col 70}-.0977828
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}-18.1804
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}  9927.3
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}1.0000
+
+{txt}{hline}
+-> year = 2015
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,049{col 22} .1024423{col 34} .0031878{col 46} .3032458{col 58} .0961934{col 70} .1086911
+       {txt}1 {c |}{res}{col 12}  5,955{col 22} .1684299{col 34} .0048501{col 46}  .374279{col 58} .1589219{col 70} .1779379
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 15,004{col 22} .1286324{col 34} .0027333{col 46} .3348037{col 58} .1232748{col 70}   .13399
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.0659876{col 34}  .005804{col 58}-.0773645{col 70}-.0546108
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}-11.3694
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}   10874
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}1.0000
+
+{txt}{hline}
+-> year = 2016
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,474{col 22} .8694321{col 34} .0034617{col 46} .3369449{col 58} .8626464{col 70} .8762178
+       {txt}1 {c |}{res}{col 12}  6,989{col 22} .8131349{col 34}  .004663{col 46} .3898311{col 58}  .803994{col 70} .8222759
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 16,463{col 22} .8455324{col 34} .0028167{col 46} .3614074{col 58} .8400113{col 70} .8510535
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .0562972{col 34} .0058075{col 58} .0449136{col 70} .0676808
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}  9.6938
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 13735.4
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{com}. by year, sort: ttest female, by(ftworth) unequal 
+
+{txt}{hline}
+-> year = 2014
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  8,486{col 22} .5097808{col 34}  .005427{col 46} .4999338{col 58} .4991425{col 70} .5204191
+       {txt}1 {c |}{res}{col 12}  5,900{col 22} .5350847{col 34}  .006494{col 46} .4988098{col 58} .5223542{col 70} .5478153
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,386{col 22} .5201585{col 34} .0041654{col 46} .4996108{col 58} .5119937{col 70} .5283233
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.0253039{col 34} .0084631{col 58}-.0418929{col 70} -.008715
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} -2.9899
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}   12707
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0014         {txt}Pr(|T| > |t|) = {res}0.0028          {txt}Pr(T > t) = {res}0.9986
+
+{txt}{hline}
+-> year = 2015
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,049{col 22} .5108852{col 34} .0052552{col 46} .4999091{col 58} .5005838{col 70} .5211866
+       {txt}1 {c |}{res}{col 12}  5,955{col 22} .5313182{col 34} .0064671{col 46} .4990601{col 58} .5186403{col 70} .5439962
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 15,004{col 22} .5189949{col 34} .0040791{col 46} .4996557{col 58} .5109993{col 70} .5269905
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} -.020433{col 34} .0083331{col 58}-.0367672{col 70}-.0040988
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} -2.4520
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 12753.8
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0071         {txt}Pr(|T| > |t|) = {res}0.0142          {txt}Pr(T > t) = {res}0.9929
+
+{txt}{hline}
+-> year = 2016
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,474{col 22} .5082331{col 34} .0051365{col 46} .4999586{col 58} .4981644{col 70} .5183017
+       {txt}1 {c |}{res}{col 12}  6,989{col 22} .5243955{col 34} .0059741{col 46} .4994402{col 58} .5126843{col 70} .5361066
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 16,463{col 22} .5150945{col 34} .0038952{col 46} .4997873{col 58} .5074594{col 70} .5227295
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.0161624{col 34} .0078787{col 58}-.0316057{col 70}-.0007192
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} -2.0514
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 15065.2
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0201         {txt}Pr(|T| > |t|) = {res}0.0402          {txt}Pr(T > t) = {res}0.9799
+
+{com}. by year, sort: ttest citizen, by(ftworth) unequal 
+
+{txt}{hline}
+-> year = 2014
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  8,486{col 22} .9019562{col 34} .0032283{col 46} .2973914{col 58} .8956279{col 70} .9082845
+       {txt}1 {c |}{res}{col 12}  5,900{col 22} .9135593{col 34} .0036588{col 46} .2810375{col 58} .9063867{col 70} .9207319
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,386{col 22} .9067149{col 34} .0024249{col 46} .2908417{col 58} .9019618{col 70} .9114679
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.0116032{col 34} .0048794{col 58}-.0211676{col 70}-.0020388
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} -2.3780
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 13127.7
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0087         {txt}Pr(|T| > |t|) = {res}0.0174          {txt}Pr(T > t) = {res}0.9913
+
+{txt}{hline}
+-> year = 2015
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,049{col 22} .8985523{col 34} .0031741{col 46} .3019373{col 58} .8923304{col 70} .9047742
+       {txt}1 {c |}{res}{col 12}  5,955{col 22} .9215785{col 34}  .003484{col 46} .2688563{col 58} .9147486{col 70} .9284084
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 15,004{col 22} .9076913{col 34} .0023632{col 46} .2894709{col 58} .9030591{col 70} .9123235
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.0230262{col 34} .0047131{col 58}-.0322644{col 70}-.0137879
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} -4.8856
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 13719.8
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}1.0000
+
+{txt}{hline}
+-> year = 2016
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,474{col 22} .8948702{col 34} .0031514{col 46} .3067368{col 58} .8886928{col 70} .9010475
+       {txt}1 {c |}{res}{col 12}  6,989{col 22} .9019888{col 34} .0035568{col 46}  .297351{col 58} .8950164{col 70} .9089613
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 16,463{col 22} .8978922{col 34} .0023599{col 46} .3027992{col 58} .8932665{col 70}  .902518
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.0071187{col 34} .0047521{col 58}-.0164333{col 70} .0021959
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} -1.4980
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 15307.2
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0671         {txt}Pr(|T| > |t|) = {res}0.1341          {txt}Pr(T > t) = {res}0.9329
+
+{com}. by year, sort: ttest pov, by(ftworth) unequal 
+
+{txt}{hline}
+-> year = 2014
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  8,486{col 22} 3.611989{col 34} .0172597{col 46} 1.589958{col 58} 3.578156{col 70} 3.645823
+       {txt}1 {c |}{res}{col 12}  5,900{col 22} 3.388417{col 34} .0202362{col 46}  1.55437{col 58} 3.348747{col 70} 3.428087
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,386{col 22} 3.520298{col 34} .0131667{col 46} 1.579239{col 58} 3.494489{col 70} 3.546106
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .2235722{col 34}  .026597{col 58} .1714381{col 70} .2757063
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}  8.4059
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 12868.8
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{txt}{hline}
+-> year = 2015
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,049{col 22}  3.66295{col 34} .0164452{col 46} 1.564368{col 58} 3.630713{col 70} 3.695186
+       {txt}1 {c |}{res}{col 12}  5,955{col 22}  3.45112{col 34} .0201034{col 46}  1.55135{col 58}  3.41171{col 70}  3.49053
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 15,004{col 22} 3.578876{col 34} .0127569{col 46} 1.562603{col 58} 3.553871{col 70} 3.603881
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .2118295{col 34} .0259729{col 58} .1609188{col 70} .2627401
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}  8.1558
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 12813.1
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{txt}{hline}
+-> year = 2016
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,474{col 22} 3.692359{col 34}  .016047{col 46} 1.561925{col 58} 3.660904{col 70} 3.723815
+       {txt}1 {c |}{res}{col 12}  6,989{col 22} 3.280063{col 34} .0194907{col 46} 1.629431{col 58} 3.241855{col 70} 3.318271
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 16,463{col 22} 3.517328{col 34} .0125002{col 46} 1.603884{col 58} 3.492826{col 70}  3.54183
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .4122962{col 34} .0252467{col 58} .3628095{col 70} .4617828
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} 16.3307
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 14692.5
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{com}. by year, sort: ttest lnincome, by(ftworth) unequal 
+
+{txt}{hline}
+-> year = 2014
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  8,424{col 22}  11.3297{col 34} .0099569{col 46} .9138709{col 58} 11.31018{col 70} 11.34921
+       {txt}1 {c |}{res}{col 12}  5,872{col 22} 11.15669{col 34} .0108844{col 46} .8340595{col 58} 11.13536{col 70} 11.17803
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,296{col 22} 11.25864{col 34} .0074104{col 46}  .886031{col 58} 11.24411{col 70} 11.27316
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .1730005{col 34} .0147516{col 58} .1440852{col 70} .2019158
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} 11.7276
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 13311.2
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{txt}{hline}
+-> year = 2015
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  8,978{col 22} 11.37546{col 34} .0097878{col 46}  .927421{col 58} 11.35627{col 70} 11.39465
+       {txt}1 {c |}{res}{col 12}  5,922{col 22} 11.19228{col 34} .0112378{col 46} .8648005{col 58} 11.17025{col 70} 11.21431
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,900{col 22} 11.30266{col 34} .0074342{col 46} .9074618{col 58} 11.28808{col 70} 11.31723
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .1831772{col 34} .0149027{col 58} .1539658{col 70} .2123886
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} 12.2915
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 13273.5
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{txt}{hline}
+-> year = 2016
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  9,426{col 22}  11.3717{col 34} .0097916{col 46} .9506397{col 58} 11.35251{col 70} 11.39089
+       {txt}1 {c |}{res}{col 12}  6,926{col 22} 11.11172{col 34} .0108396{col 46} .9020965{col 58} 11.09047{col 70} 11.13297
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 16,352{col 22} 11.26158{col 34} .0073446{col 46} .9391877{col 58} 11.24719{col 70} 11.27598
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .2599812{col 34} .0146072{col 58} .2313493{col 70} .2886131
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} 17.7981
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res} 15335.1
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{com}. 
+. gen fiber2014 = fiberop == 1 & year ==2014 
+
+. gen fiber2015 = fiberop == 1 & year ==2015 
+
+. 
+. gen diff = fiber2015-fiber2014
+
+. by year, sort: ttest diff, by(austin) unequal
+
+{txt}{hline}
+-> year = 2014
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  5,900{col 22}-.1976271{col 34} .0051847{col 46}  .398243{col 58} -.207791{col 70}-.1874632
+       {txt}1 {c |}{res}{col 12}  8,486{col 22}-.0880273{col 34} .0030759{col 46} .2833514{col 58}-.0940569{col 70}-.0819978
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 14,386{col 22}-.1329765{col 34} .0028311{col 46} .3395611{col 58}-.1385257{col 70}-.1274273
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}-.1095998{col 34} .0060284{col 58}-.1214168{col 70}-.0977828
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}-18.1804
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}  9927.3
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}0.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}1.0000
+
+{txt}{hline}
+-> year = 2015
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  5,955{col 22} .1684299{col 34} .0048501{col 46}  .374279{col 58} .1589219{col 70} .1779379
+       {txt}1 {c |}{res}{col 12}  9,049{col 22} .1024423{col 34} .0031878{col 46} .3032458{col 58} .0961934{col 70} .1086911
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 15,004{col 22} .1286324{col 34} .0027333{col 46} .3348037{col 58} .1232748{col 70}   .13399
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22} .0659876{col 34}  .005804{col 58} .0546108{col 70} .0773645
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res} 11.3694
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}   10874
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}1.0000         {txt}Pr(|T| > |t|) = {res}0.0000          {txt}Pr(T > t) = {res}0.0000
+
+{txt}{hline}
+-> year = 2016
+
+Two-sample t test with unequal variances
+{hline 9}{c TT}{hline 68}
+   Group{col 10}{c |}{col 16}Obs{col 27}Mean{col 35}Std. Err.{col 47}Std. Dev.{col 59}[95% Conf. Interval]
+{hline 9}{c +}{hline 68}
+       0 {c |}{res}{col 12}  6,989{col 22}        0{col 34}        0{col 46}        0{col 58}        0{col 70}        0
+       {txt}1 {c |}{res}{col 12}  9,474{col 22}        0{col 34}        0{col 46}        0{col 58}        0{col 70}        0
+{txt}{hline 9}{c +}{hline 68}
+combined {c |}{res}{col 12} 16,463{col 22}        0{col 34}        0{col 46}        0{col 58}        0{col 70}        0
+{txt}{hline 9}{c +}{hline 68}
+    diff {c |}{res}{col 22}        0{col 34}        0{col 58}        .{col 70}        .
+{txt}{hline 9}{c BT}{hline 68}
+    diff = mean({res}0{txt}) - mean({res}1{txt})                                      t = {res}       .
+{txt}Ho: diff = 0                     Satterthwaite's degrees of freedom = {res}       .
+
+    {txt}Ha: diff < 0                 Ha: diff != 0                 Ha: diff > 0
+ Pr(T < t) = {res}     .         {txt}Pr(|T| > |t|) = {res}     .          {txt}Pr(T > t) = {res}     .
+
+{com}.   
+. gen post = year != 2014
+
+. gen highspeed = fiberop*post 
+
+. 
+. regress employment highspeed post fiberop  
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    45,853
+{txt}{hline 13}{c +}{hline 34}   F(3, 45849)     = {res}    15.83
+{txt}       Model {c |} {res} 10.5788512         3  3.52628373   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 10210.3368    45,849  .222694864   {txt}R-squared       ={res}    0.0010
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0010
+{txt}       Total {c |} {res} 10220.9157    45,852  .222911011   {txt}Root MSE        =   {res} .47191
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  employment{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}highspeed {c |}{col 14}{res}{space 2} .0235883{col 26}{space 2} .0127505{col 37}{space 1}    1.85{col 46}{space 3}0.064{col 54}{space 4}-.0014029{col 67}{space 3} .0485795
+{txt}{space 8}post {c |}{col 14}{res}{space 2}-.0075029{col 26}{space 2} .0056669{col 37}{space 1}   -1.32{col 46}{space 3}0.186{col 54}{space 4}-.0186101{col 67}{space 3} .0036044
+{txt}{space 5}fiberop {c |}{col 14}{res}{space 2} .0114039{col 26}{space 2} .0115873{col 37}{space 1}    0.98{col 46}{space 3}0.325{col 54}{space 4}-.0113074{col 67}{space 3} .0341152
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .6571795{col 26}{space 2} .0042254{col 37}{space 1}  155.53{col 46}{space 3}0.000{col 54}{space 4} .6488976{col 67}{space 3} .6654614
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress employment highspeed post fiberop female citizen
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    45,853
+{txt}{hline 13}{c +}{hline 34}   F(5, 45847)     = {res}   189.70
+{txt}       Model {c |} {res} 207.172453         5  41.4344906   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 10013.7432    45,847  .218416542   {txt}R-squared       ={res}    0.0203
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0202
+{txt}       Total {c |} {res} 10220.9157    45,852  .222911011   {txt}Root MSE        =   {res} .46735
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  employment{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}highspeed {c |}{col 14}{res}{space 2} .0234349{col 26}{space 2} .0126277{col 37}{space 1}    1.86{col 46}{space 3}0.063{col 54}{space 4}-.0013155{col 67}{space 3} .0481854
+{txt}{space 8}post {c |}{col 14}{res}{space 2}-.0072666{col 26}{space 2} .0056133{col 37}{space 1}   -1.29{col 46}{space 3}0.195{col 54}{space 4}-.0182688{col 67}{space 3} .0037355
+{txt}{space 5}fiberop {c |}{col 14}{res}{space 2} .0099672{col 26}{space 2} .0114801{col 37}{space 1}    0.87{col 46}{space 3}0.385{col 54}{space 4} -.012534{col 67}{space 3} .0324683
+{txt}{space 6}female {c |}{col 14}{res}{space 2} -.130958{col 26}{space 2} .0043683{col 37}{space 1}  -29.98{col 46}{space 3}0.000{col 54}{space 4}  -.13952{col 67}{space 3}-.1223961
+{txt}{space 5}citizen {c |}{col 14}{res}{space 2} .0110854{col 26}{space 2} .0074155{col 37}{space 1}    1.49{col 46}{space 3}0.135{col 54}{space 4}-.0034491{col 67}{space 3} .0256198
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .7154382{col 26}{space 2} .0081842{col 37}{space 1}   87.42{col 46}{space 3}0.000{col 54}{space 4}  .699397{col 67}{space 3} .7314794
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress employment highspeed post fiberop pov lnincome
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    45,548
+{txt}{hline 13}{c +}{hline 34}   F(5, 45542)     = {res}   381.83
+{txt}       Model {c |} {res}  405.81377         5   81.162754   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 9680.49665    45,542  .212561957   {txt}R-squared       ={res}    0.0402
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0401
+{txt}       Total {c |} {res} 10086.3104    45,547  .221448403   {txt}Root MSE        =   {res} .46104
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  employment{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}highspeed {c |}{col 14}{res}{space 2} .0280663{col 26}{space 2} .0124807{col 37}{space 1}    2.25{col 46}{space 3}0.025{col 54}{space 4} .0036039{col 67}{space 3} .0525287
+{txt}{space 8}post {c |}{col 14}{res}{space 2}-.0024148{col 26}{space 2} .0055586{col 37}{space 1}   -0.43{col 46}{space 3}0.664{col 54}{space 4}-.0133097{col 67}{space 3} .0084802
+{txt}{space 5}fiberop {c |}{col 14}{res}{space 2}-.0131463{col 26}{space 2} .0113513{col 37}{space 1}   -1.16{col 46}{space 3}0.247{col 54}{space 4} -.035395{col 67}{space 3} .0091025
+{txt}{space 9}pov {c |}{col 14}{res}{space 2} .0265136{col 26}{space 2} .0021941{col 37}{space 1}   12.08{col 46}{space 3}0.000{col 54}{space 4} .0222132{col 67}{space 3} .0308141
+{txt}{space 4}lnincome {c |}{col 14}{res}{space 2} .0634084{col 26}{space 2} .0037489{col 37}{space 1}   16.91{col 46}{space 3}0.000{col 54}{space 4} .0560605{col 67}{space 3} .0707563
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.1432872{col 26}{space 2} .0367627{col 37}{space 1}   -3.90{col 46}{space 3}0.000{col 54}{space 4}-.2153428{col 67}{space 3}-.0712317
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. regress employment highspeed post fiberop female citizen pov lnincome
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}    45,548
+{txt}{hline 13}{c +}{hline 34}   F(7, 45540)     = {res}   396.24
+{txt}       Model {c |} {res} 579.056204         7  82.7223148   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 9507.25422    45,540  .208767111   {txt}R-squared       ={res}    0.0574
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.0573
+{txt}       Total {c |} {res} 10086.3104    45,547  .221448403   {txt}Root MSE        =   {res} .45691
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  employment{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 3}highspeed {c |}{col 14}{res}{space 2}   .02742{col 26}{space 2} .0123689{col 37}{space 1}    2.22{col 46}{space 3}0.027{col 54}{space 4} .0031768{col 67}{space 3} .0516632
+{txt}{space 8}post {c |}{col 14}{res}{space 2}-.0029994{col 26}{space 2} .0055095{col 37}{space 1}   -0.54{col 46}{space 3}0.586{col 54}{space 4}-.0137982{col 67}{space 3} .0077993
+{txt}{space 5}fiberop {c |}{col 14}{res}{space 2}-.0121132{col 26}{space 2} .0112513{col 37}{space 1}   -1.08{col 46}{space 3}0.282{col 54}{space 4}-.0341659{col 67}{space 3} .0099396
+{txt}{space 6}female {c |}{col 14}{res}{space 2}-.1206328{col 26}{space 2} .0042922{col 37}{space 1}  -28.11{col 46}{space 3}0.000{col 54}{space 4}-.1290456{col 67}{space 3}  -.11222
+{txt}{space 5}citizen {c |}{col 14}{res}{space 2}-.0430942{col 26}{space 2} .0074679{col 37}{space 1}   -5.77{col 46}{space 3}0.000{col 54}{space 4}-.0577315{col 67}{space 3} -.028457
+{txt}{space 9}pov {c |}{col 14}{res}{space 2}  .028195{col 26}{space 2} .0022113{col 37}{space 1}   12.75{col 46}{space 3}0.000{col 54}{space 4} .0238609{col 67}{space 3} .0325292
+{txt}{space 4}lnincome {c |}{col 14}{res}{space 2} .0589588{col 26}{space 2} .0037274{col 37}{space 1}   15.82{col 46}{space 3}0.000{col 54}{space 4} .0516531{col 67}{space 3} .0662646
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0025596{col 26}{space 2} .0375632{col 37}{space 1}    0.07{col 46}{space 3}0.946{col 54}{space 4}-.0710649{col 67}{space 3} .0761842
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{com}. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}/Users/Cho/Desktop/Data/PowerPoint Log.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}19 Mar 2019, 10:22:57
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
